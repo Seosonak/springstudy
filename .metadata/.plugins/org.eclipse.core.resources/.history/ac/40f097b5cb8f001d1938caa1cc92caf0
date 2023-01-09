@@ -1,0 +1,12 @@
+package com.example;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class TestController {
+
+	public UserDto test() {
+		UserDto userDto = new UserDto();
+	}
+	
+}
