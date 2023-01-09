@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/Users/bomjy/Spring/jpa-test"/>
 			<item value="/Users/bomjy/Spring/spring-quiz"/>
 			<item value="/Users/bomjy/Spring/spring-demo"/>
 		</list>
