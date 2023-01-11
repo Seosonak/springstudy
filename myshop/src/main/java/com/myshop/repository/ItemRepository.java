@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.myshop.constant.ItemSellStatus;
 import com.myshop.entity.Item;
@@ -24,21 +26,48 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	//select * from item where price < ? order by price desc;
 	List<Item> findByPriceLessThanOrderByPriceDesc(Integer price);
 	
-	// 1. itemNm이 “테스트 상품1” 이고 ItemSellStatus가 Sell인 레코드를 구하는 Junit 테스트 코드를 완성하시오.
-	//List<Item> findByItemNmAndItemSellStatus(String itemNm, ItemSellStatus itemSellStatus);
 	
-	
-	// 2. price가 10004~ 10008 사이인 레코드 
-	//List<Item> findByPriceBetween(Integer startprice, Integer endprice);
-	
-	// 3.regTime이 2023-1-1 12:12:44 이후의 레코드
-	//List<Item> findByRegTimeAfter(LocalDateTime regTime);
+	/*
 
+	List<Item> findByItemNmAndItemSellStatus(String itemNm, ItemSellStatus itemSellStatus);
 	
-	// 4. itemSellStatus가 null이 아닌 레코드
-	//List<Item> findByItemSellStatusNotNull();
+	List<Item> findByPriceBetween(Integer startprice, Integer endprice);
+	//선생님 풀이 : List<Item> findByPriceBetween(Integer price1, Integer price2);
+	
+	List<Item> findByRegTimeAfter(LocalDateTime regTime);
 
-	// 5.itemDetail이 설명1로 끝나는 레코드
+	List<Item> findByItemSellStatusNotNull();
+
 	List<Item> findByItemDetailEndingWith(String itemDetail);
+
+	*/
+	
+	// jpql~! 이름에규칙이 있는건 아니지만 비슷하게작성해주는게 좋다 
+	
+	/*// @Param 주는 방법 1
+	@Query("select i from Item i where i.itemDetail like %:itemDetail% order by i.price desc") // 별칭(i) 지어줘야함! 
+	List<Item> findByItemDetail(@Param("itemDetail") String itemDetail); //@Param : 
+	*/
+	
+	// @Param 방법2 (숫자) %?1% : 첫번째 파라미터라는 뜻
+	@Query("select i from Item i where i.itemDetail like %?1% order by i.price desc") // 별칭(i) 지어줘야함! 
+	List<Item> findByItemDetail(String itemDetail);
+	
+	//네이티브 쿼리 
+	@Query(value = "select * from item i where i.item_detail like %:itemDetail% order by i.price desc", nativeQuery = true)
+	List<Item> findByItemDetailByNative(@Param("itemDetail") String itemDetail);
+	
+	/*
+	//퀴즈2-1 
+	@Query("select i from Item i where i.price >= :price")
+	List<Item> findByItemPrice(@Param("price") Integer price);
+	
+	//퀴즈2-2
+	@Query("select i from Item i where i.itemNm = :itemNm and i.itemSellStatus = :sell")
+	List<Item> findByNmSell(@Param("itemNm") String itemNm, @Param("sell") ItemSellStatus sell);
+	/*
+	@Query(value = "select * from item i where i.itemNm like %:itemNm% and i.itemSellStatus", nativeQuery = true)
+	List<Item> findByitemNmSell(@Param("itemNm, itemSellStatus") String itemNm, ItemSellStatus itemSellStatus);
+*/
 
 }
