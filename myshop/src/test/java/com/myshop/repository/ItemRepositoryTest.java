@@ -275,6 +275,7 @@ class ItemRepositoryTest {
 
 	}
 	
+	/*
 	//퀴즈1 
 	@Test
 	@DisplayName("DSL 퀴즈1")
@@ -357,6 +358,6 @@ class ItemRepositoryTest {
 			System.out.println(item.toString());
 		}
 	}
-	
+	*/
 
 }

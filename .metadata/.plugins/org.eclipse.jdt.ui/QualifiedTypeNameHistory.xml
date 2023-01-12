@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="javax.persistence.EntityManagerFactory"/>
     <fullyQualifiedTypeName name="com.example.entity.emf.UniqueEntityManagerFactory"/>
     <fullyQualifiedTypeName name="javax.persistence.Persistence"/>
@@ -24,12 +23,9 @@
     <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
     <fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
     <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
-    <fullyQualifiedTypeName name="com.querydsl.jpa.impl.JPAQueryFactory"/>
     <fullyQualifiedTypeName name="com.querydsl.core.QueryFactory"/>
     <fullyQualifiedTypeName name="com.querydsl.jpa.impl.JPAQuery"/>
     <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.util.ArrayBuilders.BooleanBuilder"/>
     <fullyQualifiedTypeName name="com.myshop.entity.QItem"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="org.springframework.cglib.transform.ClassReaderGenerator"/>
@@ -38,4 +34,14 @@
     <fullyQualifiedTypeName name="org.springframework.data.domain.PageRequest"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
+    <fullyQualifiedTypeName name="java.lang.Boolean"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.util.ArrayBuilders.BooleanBuilder"/>
+    <fullyQualifiedTypeName name="com.querydsl.core.BooleanBuilder"/>
+    <fullyQualifiedTypeName name="com.querydsl.jpa.impl.JPAQueryFactory"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.jni.Time"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
 </qualifiedTypeNameHistroy>
