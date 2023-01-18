@@ -4,7 +4,42 @@
       layout:decorate="~{layouts/layout1}">
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript" th:src="@{/js/cookie.js}"></script>
 <title>Insert title here</title>
+<!-- 각 페이지의 스크립트가 작성될 위치 -->
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+	    //쿠키를 이용한 아이디 기억
+		$(document).ready(function(){
+        	var userInputId = getCookie("userInputId"); //쿠키의 기로 값을 가져온다.
+        	var setCookieYN = getCookie("setCookieYN");
+        	
+        	if (setCookieYN == "Y") {
+        		$("#id_save").prop("checked", true); //체크박스에 체크
+        		$("#email").val(userInputId);
+        	} else {
+        		$("#id_save").prop("checked", false); //체크 체크해제
+        		
+        	}
+        	
+        	$('#loginbtn').click(function() {
+        		//아이디를 쿠키에 저장
+        		if($("#id_save").is(":checked")) { //is_save가 체크되어있으면 true를 리턴
+        			var userInputId = $("#email").val(); //이메일 값을 가져온다
+        			setCookie("userInputId", userInputId, 60); //60일동안 쿠키저장
+        			setCookie("setCookieYN", "Y", 60); 
+        		} else {
+        			deleteCookie("userInputId");
+        			deleteCookie("setCookieYN");
+        		}
+        	});
+        	
+        	
+    	});
+	    
+	</script>
+</th:block>
+
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
   <style>

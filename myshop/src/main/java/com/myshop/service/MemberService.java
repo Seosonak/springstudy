@@ -34,7 +34,6 @@ public class MemberService implements UserDetailsService{ //UserDetailsService :
 				.build();
 	}
 
-	
 	public Member saveMember(Member member) {
 		validateDuplicateMember(member);
 		return memberRepository.save(member); // member 테이블에 insert
