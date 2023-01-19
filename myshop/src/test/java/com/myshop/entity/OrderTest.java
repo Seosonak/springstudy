@@ -23,10 +23,16 @@ import com.myshop.repository.OrderRepository;
 @SpringBootTest
 @Transactional
 @TestPropertySource(locations = "classpath:application-test.properties")
+/*
+			-- SAVE 와  FLUSH 
 
+	save : DB엔 저장안된상태 (MYSQL은 오토커밋을해주기때문에 save만해도 커밋이됨!)
+	flush : 실제로 commit이 되는 상태
+	MYSQL은 insert만 해줘도 오토커밋. h2는 flush 혹은 save and flush(로 강제커밋 
+*/
 class OrderTest {
 
-	@Autowired
+	@Autowired //의존성주입
 	ItemRepository itemRepository;
 
 	@Autowired
@@ -48,8 +54,8 @@ class OrderTest {
 		item.setItemDetail("테스트 상품 상세 설명 ");
 		item.setItemSellStatus(ItemSellStatus.SELL);
 		item.setStockNumber(100);
-		item.setRegTime(LocalDateTime.now());
-		item.setUpdateTime(LocalDateTime.now());
+	//	item.setRegTime(LocalDateTime.now());
+	//	item.setUpdateTime(LocalDateTime.now());
 
 		return item;
 
@@ -118,14 +124,12 @@ class OrderTest {
 	public void lazyLoadingTest() {
 		Order order = this.createOrder();
 		Long orderItemId = order.getOrderItems().get(0).getId(); //오더아이템 테이블의 첫번쨰물건id를 구함
-		
+	
 		em.flush();
 		em.clear();
 	
 		OrderItem orderItem = orderItemRepository.findById(orderItemId)
 				.orElseThrow(EntityNotFoundException::new);
 		
-		
-	
 	}
 }
