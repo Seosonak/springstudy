@@ -1,13 +1,20 @@
 package com.myshop.service;
 
+import java.util.ArrayList;
+
 import java.util.List;
 
-import javax.transaction.Transactional;
+import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myshop.dto.ItemFormDto;
+import com.myshop.dto.ItemImgDto;
+import com.myshop.dto.ItemSearchDto;
 import com.myshop.entity.Item;
 import com.myshop.entity.ItemImg;
 import com.myshop.repository.ItemImgRepository;
@@ -44,4 +51,51 @@ public class ItemService {
 		return item.getId();
 	}
 	
+	//상품들 내용 (아이템서비스에 구현) , 상품이미지 구현 (아이템이미지에 구현)
+	//상품 가져오기
+	@Transactional(readOnly = true) //문제가생기면 롤백을 시켜주는 어노테이션 . readOnly = true :트랜잭션읽기전용(변경감지 수행하지않음) -> 성능향상
+	public ItemFormDto getItemDtl(Long itemId) {
+		//1. item_img 테이블의 이미지를 가져온다
+		List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
+		List<ItemImgDto> itemImgDtoList = new ArrayList<> ();
+		
+		//엔티티 객체 > DTO객체로 변환
+		for(ItemImg itemImg : itemImgList) {
+			ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
+			itemImgDtoList.add(itemImgDto);
+		}
+		
+		// 2. item테이블에 있는 데이터를 가져온다
+		Item item = itemRepository.findById(itemId)
+								  .orElseThrow(EntityNotFoundException::new);
+		
+		//엔티티 객체 > DTO로 변환
+		ItemFormDto itemFormDto = ItemFormDto.of(item);
+		
+		//상품의 이미지정보를 넣어준다
+		itemFormDto.setItemImgDtoList(itemImgDtoList);
+		
+		return itemFormDto;
+	}
+	//상품수정
+	public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws Exception {
+		Item item = itemRepository.findById(itemFormDto.getId())
+								  .orElseThrow(EntityNotFoundException::new);
+		
+		item.updateItem(itemFormDto);
+		//이미지다섯개를 우선 가져온다 (상품이미지아이디리스트를 조회)
+		List<Long> itemImgIds = itemFormDto.getItemImgIds();
+		
+		// 이미지와 이미지파일자체를 가져와서 업데이트아이템이미지를 실행
+		for(int i = 0; i < itemImgFileList.size(); i++ ) {
+			itemImgService.updateItemImg(itemImgIds.get(i), itemImgFileList.get(i));
+		}
+		
+		return item.getId();
+	}
+	//상품 리스트 가져오기
+	@Transactional(readOnly = true)
+	public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+		return itemRepository.getAdminItemPage(itemSearchDto, pageable);
+	}
  }

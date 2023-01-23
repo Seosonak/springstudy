@@ -67,8 +67,8 @@ class ItemRepositoryTest {
 			item.setItemDetail("테스트 상품 상세 설명" + i);
 			item.setItemSellStatus(ItemSellStatus.SELL);
 			item.setStockNumber(100);
-			item.setRegTime(LocalDateTime.now());
-			item.setUpdateTime(LocalDateTime.now());
+			//item.setRegTime(LocalDateTime.now());
+			//item.setUpdateTime(LocalDateTime.now());
 
 			Item savedItem = itemRepository.save(item); // save =insert / update 의 기능이 들어간애
 
@@ -87,7 +87,7 @@ class ItemRepositoryTest {
 			item.setItemSellStatus(ItemSellStatus.SELL);
 			item.setStockNumber(100);
 			item.setRegTime(LocalDateTime.now());
-			item.setUpdateTime(LocalDateTime.now());
+			//item.setUpdateTime(LocalDateTime.now());
 			Item savedItem = itemRepository.save(item); // data insert
 		}
 
@@ -99,7 +99,7 @@ class ItemRepositoryTest {
 			item.setItemSellStatus(ItemSellStatus.SOLD_OUT);
 			item.setStockNumber(0);
 			item.setRegTime(LocalDateTime.now());
-			item.setUpdateTime(LocalDateTime.now());
+		//	item.setUpdateTime(LocalDateTime.now());
 			Item savedItem = itemRepository.save(item); // data insert
 		}
 	}
