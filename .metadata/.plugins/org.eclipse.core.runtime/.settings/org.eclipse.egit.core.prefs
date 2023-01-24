@@ -1,4 +1,4 @@
-GitRepositoriesView.GitDirectories=/Users/bomjy/Spring/.git\:
-GitRepositoriesView.GitDirectories.relative=.git\:
+GitRepositoriesView.GitDirectories=/Users/bomjy/eclipse-workspace/.git\:/Users/bomjy/Spring/.git\:
+GitRepositoriesView.GitDirectories.relative=/Users/bomjy/eclipse-workspace/.git\:.git\:
 core_autoIgnoreDerivedResources=false
 eclipse.preferences.version=1

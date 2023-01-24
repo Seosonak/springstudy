@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.persistence.PersistenceContext"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
-    <fullyQualifiedTypeName name="org.springframework.security.test.context.support.WithMockUser"/>
-    <fullyQualifiedTypeName name="org.springframework.data.annotation.LastModifiedDate"/>
-    <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
-    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
-    <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
-    <fullyQualifiedTypeName name="javax.validation.constraints.NotBlank"/>
     <fullyQualifiedTypeName name="javax.validation.constraints.NotNull"/>
     <fullyQualifiedTypeName name="org.modelmapper.ModelMapper"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
@@ -16,10 +8,6 @@
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="lombok.extern.java.Log"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
     <fullyQualifiedTypeName name="org.apache.groovy.parser.antlr4.util.StringUtils"/>
     <fullyQualifiedTypeName name="com.myshop.repository.ItemRepository"/>
@@ -39,12 +27,10 @@
     <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
     <fullyQualifiedTypeName name="javax.persistence.EntityNotFoundException"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
     <fullyQualifiedTypeName name="com.querydsl.jpa.impl.JPAQueryFactory"/>
     <fullyQualifiedTypeName name="com.querydsl.core.QueryResults"/>
     <fullyQualifiedTypeName name="com.myshop.entity.QItem"/>
-    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="org.thymeleaf.util.StringUtils"/>
     <fullyQualifiedTypeName name="com.myshop.constant.ItemSellStatus"/>
     <fullyQualifiedTypeName name="com.querydsl.core.types.dsl.BooleanExpression"/>
@@ -60,4 +46,18 @@
     <fullyQualifiedTypeName name="org.springframework.data.domain.PageRequest"/>
     <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
     <fullyQualifiedTypeName name="com.myshop.entity.Item"/>
+    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="javax.persistence.GenerationType"/>
+    <fullyQualifiedTypeName name="org.springframework.data.annotation.CreatedDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.crud.entity.CrudEntity"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.crud.service.CrudService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="lombok.extern.java.Log"/>
 </qualifiedTypeNameHistroy>
