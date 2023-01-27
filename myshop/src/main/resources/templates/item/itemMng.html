@@ -35,13 +35,17 @@
 select {
 	margin-right: 10px;
 }
+
+a {
+	cursor: pointer
+}
 </style>
 </th:block>
 
 </head>
 <body>
 	<div layout:fragment="content">
-		<!-- items.number  : 현재페이지의 숫자' -->
+		<!-- items.number :현재 페이지 숫자 -->
 		<form th:action="@{'/admin/items/' + ${items.number}}" role="form"
 			method="get" th:object="${items}">
 			<table class="table">
@@ -55,13 +59,13 @@ select {
 					</tr>
 				</thead>
 				<tbody>
-					<!-- items.getContent : 조회된 데이터를 가져옴 -->
+					<!-- items.getContent() :조회된 데이터를 가져온다.(List로 변환) -->
 					<tr th:each="item, status: ${items.getContent()}">
 						<th th:text="${item.id}" scope="row"></th>
 						<td><a th:href="'/admin/item/'+${item.id}"
 							th:text="${item.itemNm}"></a></td>
-						 <td
-							th:text="${item.itemSellStatus == T(com.myshop.constant.ItemSellStatus).SELL} ? '판매중' : '품절'"></td> 
+						<td
+							th:text="${item.itemSellStatus == T(com.myshop.constant.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>
 						<td th:text="${item.createdBy}"></td>
 						<td th:text="${item.regTime}"></td>
 					</tr>
@@ -69,25 +73,27 @@ select {
 			</table>
 
 			<!-- 페이징 버튼 -->
-			<!-- th:with 는 변수를 정의할때 씀 -->
-			<!-- start : 페이지시작번호의 공식/ (현재페이지번호/보여줄 페이지수) + 1, 페이지시작번호 -->
-			<!-- end : 페이지끝번호공식/ start + (보여줄 페이지수 -1), 페이지끝번호 -->
+			<!-- start = (현재 페이지 번호/보여줄 페이지수) + 1 , 페이지 시작 번호-->
+			<!-- end = start + (보여줄 페이지수 - 1 ), 페이지 끝 번호-->
 			<nav
-				th:with="start=${(items.number/maxPage)*maxPage + 1}, 
-			end=(${items.totalPages == 0 ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages) })"
+				th:with="start=${(items.number/maxPage)*maxPage + 1}
+			,end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})"
 				aria-label="Page navigation example">
 				<ul class="pagination d-flex justify-content-center">
-					<li class="page-item" th:classappend="${items.first}?'disabled'"><a
-						class="page-link"
-						th:onclick="'javascript:page(' + {items.number - 1} + ')'">Previous</a></li>
-					<li class="pate-item"
-						th:each="page: ${#numbers.sequence(start, end)}"><a
-						class="page-link"
-						th:inline="text" th:onclick="'javascript:page(' + {page - 1} + ')'" href="#">[[${page}]]</a>
+					<li class="page-item" th:classappend="${items.first}?'disabled'">
+						<a class="page-link"
+						th:onclick="'javascript:page(' + ${items.number - 1} +')'">이전</a>
 					</li>
-
-					<li class="page-item" th:classappend="${items.last}?'disabled'"><a class="page-link"
-						th:onclick="'javascript:page(' + {items.number + 1} + ')'">Next</a></li>
+					<li class="page-item"
+						th:each="page: ${#numbers.sequence(start, end)}"
+						th:classappend="${items.number eq page-1}?'active':''"><a
+						class="page-link" th:inline="text"
+						th:onclick="'javascript:page(' + ${page - 1} +')'">[[${page}]]</a>
+					</li>
+					<li class="page-item" th:classappend="${items.last}?'disabled'">
+						<a class="page-link"
+						th:onclick="'javascript:page(' + ${items.number + 1} +')'">다음</a>
+					</li>
 				</ul>
 			</nav>
 

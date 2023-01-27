@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.myshop.dto.ItemFormDto;
@@ -26,6 +27,7 @@ import com.myshop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
+//@RestController
 @RequiredArgsConstructor
 public class ItemController {
 	
@@ -72,13 +74,15 @@ public class ItemController {
 			model.addAttribute(itemFormdto);
 		} catch(EntityNotFoundException e) {
 			model.addAttribute("errorMessage", "존재하지 않는 상품입니다.");
-			model.addAttribute("itemFormDto", new ItemFormDto()); //빈객체를 넣어줘야 인식을 함.. !@
+			model.addAttribute("itemFormDto", new ItemFormDto());
 			return "item/itemForm";
 		}
+		
 		return "item/itemForm";
 	}
-	//수정버튼 눌렀을때
-	@PostMapping(value ="/admin/item/{itemid}")
+	
+	//상품 수정
+	@PostMapping(value = "/admin/item/{itemId}")
 	public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult, 
 			Model model, @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList) {
 		if(bindingResult.hasErrors()) {
@@ -93,25 +97,36 @@ public class ItemController {
 		
 		try {
 			itemService.updateItem(itemFormDto, itemImgFileList);
-		} catch(Exception e) {
-			model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
+		} catch (Exception e) {
 			e.printStackTrace();
+			model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
+			return "item/itemForm";
 		}
+		
 		return "redirect:/";
 	}
 	
-	// 앞의주소(페이지주소없는경우)와 뒤의주소(페이지주소있는경우) 둘 다 매핑되게 하는 것
-	@GetMapping(value = {"/admin/items", "/admin/items/{page}" } )
+	@GetMapping(value = {"/admin/items", "/admin/items/{page}"}) //페이지 번호가 없는 경우와 있는 경우 2가지를 매핑
 	public String itemManage(ItemSearchDto itemSearchDto, @PathVariable("page") Optional<Integer> page, Model model) {
-		//url 경로에 페이지가 있으면 해당 페이지를 조회하고 페이지 번호가 없으면 0페이지를 조회
-		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+		
+		//url경로에 페이지가 있으면 해당 페이지를 조회하도록 하고 페이지 번호가 없으면 0페이지를 조회하도록 한다.
+		Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3); //of(조회할 페이지의 번호, 한페이지당 조회할 데이터의 갯수)
 		
 		Page<Item> items = itemService.getAdminItemPage(itemSearchDto, pageable);
 		
 		model.addAttribute("items", items);
 		model.addAttribute("itemSearchDto", itemSearchDto);
-		model.addAttribute("maxPage", 5); //최대 5번까지 보여주겠단 뜻  
+		model.addAttribute("maxPage", 5); //상품 관리 메뉴 하단에 보여줄 최대 페이지 번호
 		
 		return "item/itemMng";
+//		return items;
+	}
+	
+	//상품 상세 페이지
+	@GetMapping(value = "/item/{itemId}")
+	public String itemDtl(Model model, @PathVariable("itemId") Long itemId) {
+		ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+		model.addAttribute("item", itemFormDto);
+		return "item/itemDtl";
 	}
 }
