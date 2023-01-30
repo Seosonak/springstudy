@@ -98,5 +98,13 @@ public class OrderService {
 		order.cancelOrder();
 	}
 	
+	//취소한 주문 삭제하기
+	public void deleteOrder(Long orderId) {
+		Order order = orderRepositorty.findById(orderId)
+				.orElseThrow(EntityNotFoundException::new);
+		orderRepositorty.delete(order);
+		
+	}
+	
 	
 }
