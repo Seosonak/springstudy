@@ -20,7 +20,7 @@ org.eclipse.jface.textfont=1|D2Coding ligature|16.0|0|COCOA|1|;
 org.eclipse.mylyn.wikitext.ui.presentation.textFont=1|D2Coding ligature|16.0|0|COCOA|1|;
 org.eclipse.pde.internal.ui.compare.ManifestContentMergeViewer=1|D2Coding ligature|16.0|0|COCOA|1|;
 org.eclipse.pde.internal.ui.compare.PluginContentMergeViewer=1|D2Coding ligature|16.0|0|COCOA|1|;
-org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\n<org.eclipse.ui.commands>\n<keyBinding contextId\="org.eclipse.ui.contexts.dialogAndWindow" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+SPACE"/>\n<keyBinding commandId\="org.eclipse.ui.edit.text.contentAssist.proposals" contextId\="org.eclipse.ui.contexts.dialogAndWindow" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+G"/>\n</org.eclipse.ui.commands>
+org.eclipse.ui.commands=<?xml version\="1.0" encoding\="UTF-8"?>\n<org.eclipse.ui.commands>\n<keyBinding commandId\="org.eclipse.ui.edit.text.contentAssist.proposals" contextId\="org.eclipse.ui.contexts.dialogAndWindow" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+G"/>\n<keyBinding contextId\="org.eclipse.ui.contexts.dialogAndWindow" keyConfigurationId\="org.eclipse.ui.defaultAcceleratorConfiguration" keySequence\="CTRL+SPACE"/>\n</org.eclipse.ui.commands>
 org.eclipse.ui.ide.systemDefault.CONFLICTING_COLOR=232,14,64
 org.eclipse.ui.ide.systemDefault.CONTENT_ASSIST_BACKGROUND_COLOR=46,52,56
 org.eclipse.ui.ide.systemDefault.CONTENT_ASSIST_FOREGROUND_COLOR=233,235,237
